@@ -1,4 +1,54 @@
-﻿function registroCondomino() {
+﻿function validateForm() {
+
+    let isValid = true;
+
+    function checkField(id, errorId, message) {
+        let value = document.getElementById(id).value;
+        let errorSpan = document.getElementById(errorId);
+
+        if (!value) {
+            errorSpan.innerText = message;
+            isValid = false;
+        } else {
+            errorSpan.innerText = "";
+        }
+    }
+
+    checkField("idType", "errorIdType", "Seleccione Tipo de identificación");
+    checkField("id", "errorId", "Identificación requerida");
+    checkField("nombre", "errorNombre", "Nombre requerido");
+    checkField("apellidos", "errorApellidos", "Apellidos requerido");
+    checkField("fechaNacimiento", "errorFechaNacimiento", "Fecha de nacimiento requerida");
+    checkField("numeroFilial", "errorNumeroFilial", "Número filial requerido");
+    checkField("tieneConstruccion", "errorTieneConstruccion", "Seleccione tiene construcción?");
+    checkField("email", "errorEmail", "Email requerido");
+    checkField("password", "errorPassword", "Password requerida");
+    checkField("confirmPassword", "errorConfirmarPassword", "Confirmar contraseña");
+
+    if (document.getElementById("password").value !==
+        document.getElementById("confirmPassword").value) {
+
+        document.getElementById("errorConfirmarPassword").innerText =
+            "Contraseñas no son iguales";
+        isValid = false;
+    }
+
+    if (!document.getElementById("terminos").checked) {
+        document.getElementById("errorTerminos").innerText =
+            "Para completar el registro debe aceptar los términos.";
+        isValid = false;
+    } else {
+        document.getElementById("errorTerminos").innerText = "";
+    }
+
+    return isValid;
+}
+
+function registroCondomino() {
+
+    if (!validateForm()) {
+        return; //No realiza almacenamiento
+    }
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
