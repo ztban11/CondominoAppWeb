@@ -70,6 +70,9 @@ function registroCondomino() {
         return;
     }
 
+
+    const tieneConstruccionValue = document.getElementById("tieneConstruccion").value;
+
     const data = {
         idTipo: document.getElementById("idTipo").value,
         id: document.getElementById("id").value,
@@ -77,7 +80,7 @@ function registroCondomino() {
         apellidos: document.getElementById("apellidos").value,
         fechaNacimiento: document.getElementById("fechaNacimiento").value,
         numeroFilial: document.getElementById("numeroFilial").value,
-        tieneConstruccion: document.getElementById("tieneConstruccion").checked,
+        tieneConstruccion: tieneConstruccionValue === "true",
         email: email,
         password: password
     };
@@ -103,4 +106,40 @@ function showMessage(msg, isError) {
     const messageDiv = document.getElementById("mensaje");
     messageDiv.style.color = isError ? "red" : "green";
     messageDiv.innerText = msg;
+}
+
+function login() {
+
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const data = {
+        email: email,
+        password: password
+    };
+
+    fetch("Default.aspx/Login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(response => {
+
+            if (response.d.success) {
+
+                // Role is integer now
+                if (response.d.tipoUsuario === 1) {
+                    window.location.href = "Admin.aspx";
+                } else {
+                    window.location.href = "Condomino.aspx";
+                }
+
+            } else {
+                document.getElementById("mensaje").innerText = "Credenciales inválidos";
+            }
+
+        });
 }

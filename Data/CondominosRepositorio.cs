@@ -13,7 +13,7 @@ namespace CondominosAppWeb.Data
         private string connectionString =
         ConfigurationManager.ConnectionStrings["CondominosDB"].ConnectionString;
 
-        public void AddOwner(Condomino elCondomino)
+        public void AgregarCondomino(CondominosAppWeb.Models.Condomino elCondomino)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

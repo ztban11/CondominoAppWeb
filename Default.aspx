@@ -9,9 +9,24 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-             <a href="Registro.aspx">Registro</a>
+        <h2>Sistema Condominos</h2>
+        
+        <div class="form-group">
+            <label>Email: </label>
+            <input type="email" id="loginEmail" />
+
         </div>
+        
+        <div class="form-group">
+            <label>Contraseña: </label>
+            <input type="password" id="loginPassword" />
+        </div>
+        
+        <button type="button" onclick="login()">Ingresar</button>
+        
+        <div id="mensaje"></div>
+        
+        <script src="Scripts/registro.js"></script>
     </form>
 </body>
 </html>

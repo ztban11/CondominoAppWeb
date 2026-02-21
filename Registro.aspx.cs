@@ -19,7 +19,7 @@ namespace CondominosAppWeb
         }
 
         [WebMethod]
-        public static string RegistrarCondomino(Condomino elCondomino)
+        public static string RegistrarCondomino(CondominosAppWeb.Models.Condomino elCondomino)
         {
             if (CondominoService.EmailExists(elCondomino.email))
             {
@@ -27,8 +27,7 @@ namespace CondominosAppWeb
             }
 
             CondominosRepositorio repositorio = new CondominosRepositorio();
-            repositorio.AddOwner(elCondomino);
-            //CondominoService.AgregarCondomino(elCondomino);
+            repositorio.AgregarCondomino(elCondomino);
             return "Registro satisfactorio!";
         }
     }

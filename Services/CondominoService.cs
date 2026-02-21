@@ -8,19 +8,19 @@ namespace CondominosAppWeb.Services
 {
     public static class CondominoService
     {
-        private static List<Condomino> condominos = new List<Condomino>();
+        private static List<CondominosAppWeb.Models.Condomino> condominos = new List<CondominosAppWeb.Models.Condomino>();
 
         public static bool EmailExists(string email)
         {
             return condominos.Any(o => o.email.ToLower() == email.ToLower());
         }
 
-        public static void AgregarCondomino(Condomino elCondomino)
+        public static void AgregarCondomino(CondominosAppWeb.Models.Condomino elCondomino)
         {
             condominos.Add(elCondomino);
         }
 
-        public static List<Condomino> GetAll()
+        public static List<CondominosAppWeb.Models.Condomino> GetAll()
         {
             return condominos;
         }
