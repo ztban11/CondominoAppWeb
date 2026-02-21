@@ -12,10 +12,10 @@ namespace CondominosAppWeb.Services
 
         public static bool EmailExists(string email)
         {
-            return condominos.Any(o => o.Email.ToLower() == email.ToLower());
+            return condominos.Any(o => o.email.ToLower() == email.ToLower());
         }
 
-        public static void AddOwner(Condomino elCondomino)
+        public static void AgregarCondomino(Condomino elCondomino)
         {
             condominos.Add(elCondomino);
         }

@@ -1,4 +1,5 @@
-﻿using CondominosAppWeb.Models;
+﻿using CondominosAppWeb.Data;
+using CondominosAppWeb.Models;
 using CondominosAppWeb.Services;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,14 @@ namespace CondominosAppWeb
         [WebMethod]
         public static string RegistrarCondomino(Condomino elCondomino)
         {
-            if (CondominoService.EmailExists(elCondomino.Email))
+            if (CondominoService.EmailExists(elCondomino.email))
             {
                 return "Email ya se encuentra registrado.";
             }
 
-            CondominoService.AddOwner(elCondomino);
+            CondominosRepositorio repositorio = new CondominosRepositorio();
+            repositorio.AddOwner(elCondomino);
+            //CondominoService.AgregarCondomino(elCondomino);
             return "Registro satisfactorio!";
         }
     }

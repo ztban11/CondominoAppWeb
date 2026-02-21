@@ -14,7 +14,7 @@
         }
     }
 
-    checkField("idType", "errorIdType", "Seleccione Tipo de identificación");
+    checkField("idTipo", "errorIdType", "Seleccione Tipo de identificación");
     checkField("id", "errorId", "Identificación requerida");
     checkField("nombre", "errorNombre", "Nombre requerido");
     checkField("apellidos", "errorApellidos", "Apellidos requerido");
@@ -71,17 +71,18 @@ function registroCondomino() {
     }
 
     const data = {
-        IdentificationType: document.getElementById("idType").value,
-        Identification: document.getElementById("id").value,
-        FirstName: document.getElementById("nombre").value,
-        LastName: document.getElementById("apellidos").value,
-        DateOfBirth: document.getElementById("fechaNacimiento").value,
-        BranchNumber: document.getElementById("numeroFilial").value,
-        HasBuilding: document.getElementById("tieneConstruccion").checked,
-        Email: email,
-        Password: password
+        idTipo: document.getElementById("idTipo").value,
+        id: document.getElementById("id").value,
+        nombre: document.getElementById("nombre").value,
+        apellidos: document.getElementById("apellidos").value,
+        fechaNacimiento: document.getElementById("fechaNacimiento").value,
+        numeroFilial: document.getElementById("numeroFilial").value,
+        tieneConstruccion: document.getElementById("tieneConstruccion").checked,
+        email: email,
+        password: password
     };
 
+   // console.log(JSON.stringify({ elCondomino: data }));
     fetch("Registro.aspx/RegistrarCondomino", {
         method: "POST",
         headers: {

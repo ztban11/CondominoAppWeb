@@ -14,11 +14,9 @@
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server" />
 
-
-
         <div class="form-group">
             <label>Tipo Identificación</label>
-            <select id="idType">
+            <select id="idTipo">
                 <option value="">Seleccionar:</option>
                 <option>Física</option>
                 <option>DIMEX</option>

@@ -7,14 +7,15 @@ namespace CondominosAppWeb.Models
 {
     public class Condomino
     {
-        public string TipoID { get; set; }
-        public string ID { get; set; }
-        public string Nombre { get; set; }
-        public string Apellidos { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        public string NumeroFilial { get; set; }
+        public Condomino() { }
+        public string idTipo { get; set; }
+        public string id { get; set; }
+        public string nombre { get; set; }
+        public string apellidos { get; set; }
+        public DateTime fechaNacimiento { get; set; }
+        public string numeroFilial { get; set; }
         public bool tieneConstruccion { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
     }
 }
