@@ -56,6 +56,30 @@ namespace CondominosAppWeb.Services
         }
 
         // =========================
+        // Obtener todos los mensajes
+        // =========================
+        public List<Mensaje> ObtenerMensajesTodos()
+        {
+            return _repositorio.ObtenerTodosMsjs();
+        }
+
+        // =========================
+        // Obtener mensaje por Id
+        // =========================
+        public Mensaje ObtenerMensajeID(int elID)
+        {
+            return _repositorio.ObtenerPorId(elID);
+        }
+
+        // =========================
+        // Modificar
+        // =========================
+        public void ModificarMensaje(CondominosAppWeb.Models.Mensaje elMensaje)
+        {
+            _repositorio.Modificar(elMensaje);
+        }
+
+        // =========================
         // Borrar
         // =========================
         public void BorrarMensaje(int elId)

@@ -146,6 +146,31 @@ namespace CondominosAppWeb.Data
         }
 
         // =========================
+        // Obtener todos los mensajes
+        // =========================
+        public List<Mensaje> ObtenerTodosMsjs()
+        {
+            List<Mensaje> listadoMsjs = new List<Mensaje>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Mensajes ORDER BY PublicacionFechaInicio DESC";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        listadoMsjs.Add(MapMessage(reader));
+                    }
+                }
+            }
+            return listadoMsjs;
+        }
+
+        // =========================
         // Borrar
         // =========================
         public void Borrar(int id)

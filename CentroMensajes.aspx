@@ -19,7 +19,8 @@
         <hr />
        
        <!-- Grid -->
-       <asp:GridView ID="gvMensajes" runat="server" AutoGenerateColumns="false" Width="100%" DataKeyNames="Id" OnRowCommand="gvMensajes_RowCommand">
+       <asp:GridView ID="gvMensajes" runat="server" AutoGenerateColumns="false" Width="100%" DataKeyNames="Id"
+           OnRowCommand="gvMensajes_RowCommand" OnRowDataBound="gvMensajes_RowDataBound">
            
            <Columns>
                <asp:BoundField DataField="Titulo" HeaderText="Titulo" />
@@ -27,8 +28,8 @@
                <asp:BoundField DataField="Status" HeaderText="Status" />
                <asp:BoundField DataField="PublicacionFechaInicio" HeaderText="Inicio" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
                <asp:BoundField DataField="PublicacionFechaFinal" HeaderText="Final" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
-               
-               <asp:ButtonField Text="Borrar" CommandName="BorrarMensaje" ButtonType="Button" />
+               <asp:ButtonField Text="Modificar" CommandName="Modificar" ButtonType="Button" />
+               <asp:ButtonField Text="Borrar" CommandName="Borrar" ButtonType="Button" />
 
            </Columns>
 
@@ -36,6 +37,7 @@
 
         <!-- Panel: Formulario -->
         <asp:Panel ID="pnlFormulario" runat="server" Visible="false">
+            <asp:HiddenField ID="hiddenMessageId" runat="server" />
 
             <h3>Crear / Editar Mensaje</h3>
 

@@ -3,7 +3,9 @@ using CondominosAppWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
@@ -25,7 +27,7 @@ namespace CondominosAppWeb
 
         private void CargarMensajes()
         {
-            gvMensajes.DataSource = _service.ObtenerMensajesActivos();
+            gvMensajes.DataSource = _service.ObtenerMensajesTodos();
             gvMensajes.DataBind();
         }
 
@@ -70,17 +72,25 @@ namespace CondominosAppWeb
             {
                 Mensaje elMensaje = ConstructorMensaje();
 
-                _service.CrearMensaje(elMensaje);
+                if (!string.IsNullOrEmpty(hiddenMessageId.Value))
+                {
+                    elMensaje.Id = Convert.ToInt32(hiddenMessageId.Value);
+                    _service.ModificarMensaje(elMensaje);
+                }
+                else
+                {
+                    _service.CrearMensaje(elMensaje);
+                    desplegarMsjExito("Mensaje almacenado satisfactoriamente.");
+                }
 
-                desplegarMsjExito("Mensaje almacenado satisfactoriamente.");
-
+                hiddenMessageId.Value = string.Empty;
                 pnlFormulario.Visible = false;
+                CargarMensajes();
             }
             catch (Exception ex)
             {
                 desplegarMsjError(ex.Message);
             }
-            CargarMensajes();
         }
 
         // =========================
@@ -156,13 +166,58 @@ namespace CondominosAppWeb
 
         protected void gvMensajes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "DeleteMessage")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int id = Convert.ToInt32(gvMensajes.DataKeys[index].Value);
+            int index = Convert.ToInt32(e.CommandArgument);
+            int id = Convert.ToInt32(gvMensajes.DataKeys[index].Value);
 
+            if (e.CommandName == "Borrar")
+            {
                 _service.BorrarMensaje(id);
                 CargarMensajes();
+            }
+
+            if (e.CommandName == "Modificar")
+            {
+                CargarMensajesModificar(id);
+            }
+        }
+
+        protected void gvMensajes_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string status = DataBinder.Eval(e.Row.DataItem, "Status").ToString();
+
+                if (status == "Publicado")
+                    e.Row.Cells[2].ForeColor = System.Drawing.Color.Green;
+
+                if (status == "NoPublicado")
+                    e.Row.Cells[2].ForeColor = System.Drawing.Color.Orange;
+
+                if (status == "Expirado")
+                    e.Row.Cells[2].ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void CargarMensajesModificar(int elId)
+        {
+            var unMensaje = _service.ObtenerMensajeID(elId);
+
+            if (unMensaje != null)
+            {
+                hiddenMessageId.Value = unMensaje.Id.ToString();
+
+                txtTitulo.Text = unMensaje.Titulo;
+                // txtContent.Text = unMensaje.Content;
+                ddlTipo.SelectedValue = unMensaje.Tipo;
+                //ddlStatus.SelectedValue = unMensaje.Status;
+
+                txtActividadFechaInicio.Text = unMensaje.PublicacionFechaInicio.ToString("yyyy-MM-ddTHH:mm");
+                txtActividadFechaFinal.Text = unMensaje.PublicacionFechaFinal.ToString("yyyy-MM-ddTHH:mm");
+
+                if (unMensaje.FechaReunion.HasValue)
+                    txtFechaReunion.Text = unMensaje.FechaReunion.Value.ToString("yyyy-MM-ddTHH:mm");
+
+                pnlFormulario.Visible = true;
             }
         }
     }
