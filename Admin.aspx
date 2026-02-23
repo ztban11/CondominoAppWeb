@@ -12,6 +12,7 @@
         <h2>Bienvenido Administrador</h2>
         <ul>
             <li><a href="Registro.aspx">Registrar Condomino</a></li>
+            <li><a href="CentroMensajes.aspx">Centro de Mensajes</a></li>
             <li><a href="Actividades.aspx">Ver Actividades</a></li>
             <li><a href="Logout.aspx">Salir</a></li>
         </ul>
