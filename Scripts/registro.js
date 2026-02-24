@@ -24,6 +24,7 @@
     checkField("email", "errorEmail", "Email requerido");
     checkField("password", "errorPassword", "Password requerida");
     checkField("confirmPassword", "errorConfirmarPassword", "Confirmar contraseña");
+    checkField("rol", "errorRol", "Seleccione el rol");
 
     if (document.getElementById("password").value !==
         document.getElementById("confirmPassword").value) {
@@ -73,6 +74,14 @@ function registroCondomino() {
 
     const tieneConstruccionValue = document.getElementById("tieneConstruccion").value;
 
+    const rolValue = document.getElementById("rol").value;
+
+    if (!rolValue) {
+        showMessage("Debe seleccionar un rol.", true);
+        return;
+    }
+
+
     const data = {
         idTipo: document.getElementById("idTipo").value,
         id: document.getElementById("id").value,
@@ -82,15 +91,16 @@ function registroCondomino() {
         numeroFilial: document.getElementById("numeroFilial").value,
         tieneConstruccion: tieneConstruccionValue === "true",
         email: email,
-        password: password
+        password: password,
+        rol: document.getElementById("rol").value
     };
 
-   // console.log(JSON.stringify({ elCondomino: data }));
     fetch("Registro.aspx/RegistrarCondomino", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
+        //body: JSON.stringify(data)
         body: JSON.stringify({ elCondomino: data })
     })
         .then(response => response.json())

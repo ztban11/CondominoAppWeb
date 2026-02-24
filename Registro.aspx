@@ -6,9 +6,10 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Registro Condomino</title>
-    <link rel="stylesheet" href="Content/styles.css" />
+    <link href="<%= ResolveUrl("~/Content/styles.css") %>" rel="stylesheet" />
 </head>
 <body>
+    <div class="registro-container">
     <h2>Registro Condomino</h2>
 
     <form id="form1" runat="server">
@@ -64,7 +65,7 @@
             </select>
              <span class="error" id="errorTieneConstruccion"></span>
         </div>
-
+        
         <div class="form-group">
             <label>Email:</label>
             <input type="email" id="email"/>
@@ -92,7 +93,15 @@
         <button type="button" onclick="registroCondomino()">Registro</button>
 
         <div id="mensaje"></div>
+
+        <div class="form-group regresar-container">
+            <asp:HyperLink ID="lnkRegresar" runat="server" NavigateUrl="~/Admin.aspx" CssClass="link-regresar">
+                Regresar
+            </asp:HyperLink>
+</div>
+
     </form>
     <script src="Scripts/registro.js"></script>
+         </div>
 </body>
 </html>

@@ -1,6 +1,4 @@
-﻿using CondominosAppWeb.Models;
-using CondominosAppWeb.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,6 +8,8 @@ using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CondominosAppWeb.Models;
+using CondominosAppWeb.Services;
 
 namespace CondominosAppWeb
 {
@@ -207,9 +207,7 @@ namespace CondominosAppWeb
                 hiddenMessageId.Value = unMensaje.Id.ToString();
 
                 txtTitulo.Text = unMensaje.Titulo;
-                // txtContent.Text = unMensaje.Content;
                 ddlTipo.SelectedValue = unMensaje.Tipo;
-                //ddlStatus.SelectedValue = unMensaje.Status;
 
                 txtActividadFechaInicio.Text = unMensaje.PublicacionFechaInicio.ToString("yyyy-MM-ddTHH:mm");
                 txtActividadFechaFinal.Text = unMensaje.PublicacionFechaFinal.ToString("yyyy-MM-ddTHH:mm");

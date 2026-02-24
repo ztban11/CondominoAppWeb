@@ -1,16 +1,35 @@
 ﻿body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #836f4a   ; /* opcional */
 }
 
-h2 {
-    margin-bottom: 20px;
+/* Wrapper que centra todo el contenido */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+form {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
 }
 
 .form-group {
     margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    width: 300px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+h2 {
+    margin-bottom: 20px;
 }
 
 label {
@@ -23,9 +42,23 @@ input, select {
 }
 
 button {
-    margin-top: 15px;
-    padding: 8px;
+    width: 100%;
+    padding: 10px;
+    background-color: #0078D4;
+    color: white;
+    border: none;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
+
+.centered-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .error {
@@ -37,3 +70,148 @@ button {
     margin-top: 15px;
     font-weight: bold;
 }
+
+@media (max-width: 480px) {
+    form {
+        width: 90%;
+    }
+}
+
+.registro-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.registro-principal-container {
+    text-align: center; /* Centra horizontalmente */
+    margin-top: 11px; /* Espacio  */
+}
+
+.regresar-container {
+    text-align: center; /* Centra horizontalmente */
+    margin-top: 11px; /* Espacio  */
+}
+
+.link-regresar {
+    display: inline-block;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link-regresar:hover {
+    text-decoration: underline;
+
+}
+
+.link-registrar {
+    display: inline-block;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ===== Page Layout ===== */
+
+.page-container {
+    width: 900px;
+    max-width: 95%;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* ===== Divisor ===== */
+
+.divisor {
+    margin: 25px 0;
+}
+
+/* ===== Grid ===== */
+
+.grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.grid th {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        text-align: left;
+    }
+
+.grid td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+.grid tr:hover {
+        background-color: #f2f2f2;
+    }
+
+/* ===== Panel ===== */
+
+.form-panel {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* ===== Botones ===== */
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+        background-color: #1e7e34;
+    }
+
+/* ===== Regresar ===== */
+
+.regresar-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.link-regresar {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.link-regresar:hover {
+        text-decoration: underline;
+    }

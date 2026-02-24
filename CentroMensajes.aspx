@@ -5,21 +5,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Centro de Mensajes</title>
+    <link href="<%= ResolveUrl("~/Content/styles.css") %>" rel="stylesheet" />
 </head>
 <body>
    <form id="form1" runat="server">
 
-        <h2>Centro de Mensajes</h2>
+       <div class="page-wrapper">
+           <div class="page-container">
+               <h2 class="page-title">Centro de Mensajes</h2>
 
         <!-- Botón: Nuevo Mensaje -->
-        <asp:Button ID="btnNuevo" runat="server" 
-            Text="Nuevo Mensaje"
-            OnClick="btnNuevo_Click" />
-        <hr />
+        <asp:Button ID="btnNuevo" runat="server" Text="Nuevo Mensaje" CssClass="btn-primary" OnClick="btnNuevo_Click" />
        
+       <hr class="divisor"/>
+
        <!-- Grid -->
-       <asp:GridView ID="gvMensajes" runat="server" AutoGenerateColumns="false" Width="100%" DataKeyNames="Id"
+       <asp:GridView ID="gvMensajes" runat="server" CssClass="grid" AutoGenerateColumns="false" DataKeyNames="Id"
            OnRowCommand="gvMensajes_RowCommand" OnRowDataBound="gvMensajes_RowDataBound">
            
            <Columns>
@@ -35,8 +37,8 @@
 
        </asp:GridView>
 
-        <!-- Panel: Formulario -->
-        <asp:Panel ID="pnlFormulario" runat="server" Visible="false">
+        <!-- Panel Principal: Formulario -->
+        <asp:Panel ID="pnlFormulario" runat="server" Visible="false" CssClass="form-panel">
             <asp:HiddenField ID="hiddenMessageId" runat="server" />
 
             <h3>Crear / Editar Mensaje</h3>
@@ -86,11 +88,20 @@
 
             <br />
 
-            <asp:Button ID="btnSalvar" runat="server"
-                Text="Save"
-                OnClick="btnSalvar_Click" />
+            <asp:Button ID="btnSalvar" runat="server" Text="Guardar" CssClass="btn-success" OnClick="btnSalvar_Click" />
 
         </asp:Panel>
+
+        <div class="regresar-container">
+            <asp:HyperLink ID="lnkRegresar" runat="server" NavigateUrl="~/Admin.aspx" CssClass="link-regresar">
+         Salir
+     </asp:HyperLink>
+
+        </div>
+
+           </div> <!-- page-container -->
+           </div>
+
     </form>
 </body>
 </html>
